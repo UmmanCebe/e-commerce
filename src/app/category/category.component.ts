@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from './category';
+import { HttpClient } from '@angular/common/http';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-category',
@@ -8,30 +10,13 @@ import { Category } from './category';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient, private categoryService:CategoryService) { }
 
-  title = "Kategori Listesi";
-
-  categories: Category[] = [
-    {
-      id: 1,
-      name: "Phone"
-    },
-    {
-      id: 2,
-      name: "Computer"
-    },
-    {
-      id: 3,
-      name: "Music"
-    },
-    {
-      id: 4,
-      name: "Electronic"
-    }
-  ]
+  categories: Category[] = [];
 
   ngOnInit(): void {
+    this.categoryService.getCategory().subscribe(data =>{
+      this.categories = data;
+    })
+    }
   }
-
-}
