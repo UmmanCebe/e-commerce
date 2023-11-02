@@ -1,4 +1,5 @@
-<h3 *ngIf="products; else noProduct">{{title}}</h3>
+<!-- <h3 *ngIf="products; else noProduct">{{title}}</h3> -->
+<app-category></app-category>
 <ng-template #noProduct>
     <div class="alert alert-primary" role="alert">
         Görüntülenecek Ürün Bulunmuyor.
@@ -11,8 +12,8 @@
 </div>
 
 <div class="row">
-    <div *ngFor="let product of products | productFilter:filterText" class="card" style="width: 18rem;">
-        <img [src]="product.imgUrl" class="card-img-top" alt="...">
+    <div *ngFor="let product of products | productFilter:filterText" class="card" class="productBox">
+        <img [src]="product.imgUrl"  alt="..." class="img">
         <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">{{product.description}} {{product.price | currency}}</p>

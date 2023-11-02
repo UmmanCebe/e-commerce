@@ -1,0 +1,38 @@
+<h3>Yeni Ürün Ekle</h3><br>
+<form #productAddForm="ngForm" (ngSubmit)="add(productAddForm)">
+    <div class="form-group">
+        <input type="text" placeholder="Ürün Adı" #name="ngModel" [(ngModel)]="model.name" class="form-control"
+            name="name" id="name" required>
+        <div *ngIf="name.invalid&&name.dirty" class="alert alert-danger">Ürün ismi gereklidir.</div>
+        <!--bu name #name'e eşit-->
+    </div><br>
+    <div class="form-group">
+        <input type="text" placeholder="Açıklama" #description="ngModel" [(ngModel)]="model.description"
+            class="form-control" name="description" id="description" required>
+        <div *ngIf="description.invalid&&description.dirty" class="alert alert-danger">Açıklama gereklidir.</div>
+        <!--bu description #description'e eşit-->
+    </div><br>
+    <div class="form-group">
+        <input type="text" placeholder="Ürün Fotosu" #imgUrl="ngModel" [(ngModel)]="model.imgUrl" class="form-control"
+            name="imgUrl" id="imgUrl" required>
+        <div *ngIf="imgUrl.invalid&&imgUrl.dirty" class="alert alert-danger">Fotoğraf Gereklidir.</div>
+        <!--bu imgUrl #imgUrl'e eşit-->
+    </div><br>
+    <div class="form-group">
+        <input type="text" placeholder="Fiyat" #price="ngModel" [(ngModel)]="model.price" class="form-control"
+            name="price" id="price" required>
+        <div *ngIf="price.invalid&&price.dirty" class="alert alert-danger">Fiyat Gereklidir.</div>
+        <!--bu price #price'e eşit-->
+    </div><br>
+    <div class="form-group">
+        <select #categoryId="ngModel" [(ngModel)]="model.categoryId" class="form-control" name="categoryId"
+            id="categoryId" required>
+            <option *ngFor="let category of categories" [value]="category.id">
+                {{category.name}}<!--one way binding-->
+            </option>
+        </select>
+        <div *ngIf="categoryId.invalid&&categoryId.touched" class="alert alert-danger">Kategori Gereklidir.</div>
+        <!--bu categoryId #categoryId'e eşit-->
+    </div><br>
+    <button type="submit" class="btn btn-primary" [disabled]="productAddForm.invalid">Ürün Ekle</button>
+</form>
